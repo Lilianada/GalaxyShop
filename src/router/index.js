@@ -25,6 +25,12 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "signup" */ "../views/SignupView.vue"),
   },
+  {
+    path: '/:pathMatch(.*)*',
+    name: "not-found",
+    component: () =>
+      import(/* webpackChunkName: "error" */ "../views/ErrorView.vue"),
+  },
 ];
 
 const router = createRouter({

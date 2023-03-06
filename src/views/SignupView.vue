@@ -16,7 +16,7 @@
             </div>
             <div class="form-links">
                 <router-link to="/login">Already a user? Login</router-link> | 
-                <router-link to="/404">Forgot password</router-link>
+                <router-link to="/not-found">Forgot password</router-link>
             </div>
         </form>
     </div>
