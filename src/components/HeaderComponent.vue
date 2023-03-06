@@ -6,15 +6,23 @@
     <nav>
       <ul>
         <li><router-link to="/">Home</router-link></li>
-        <li><button @click="showLogoutModal = true">Logout</button></li>
+        <li>
+          <button @click="showLogoutModal = true" class="logoutBtn">
+            Logout
+          </button>
+        </li>
       </ul>
     </nav>
-    <logout-modal :show="showLogoutModal" @close="showLogoutModal = false" @logout="onLogout"></logout-modal>
   </header>
+    <logout-modal
+      :show="showLogoutModal"
+      @close="showLogoutModal = false"
+      @logout="onLogout"
+    ></logout-modal>
 </template>
 
 <script>
-import LogoutModal from './LogoutModal.vue';
+import LogoutModal from "./LogoutModal.vue";
 
 export default {
   components: {
@@ -27,20 +35,19 @@ export default {
   },
 };
 </script>
-  
-  <style scoped>
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background-color: #0e0e0e;
-    color: #ff9100;
-  }
+
+<style scoped lang="scss">
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #0e0e0e;
   .logo {
     font-size: 24px;
     font-weight: bold;
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
+    color: #ff9100;
   }
 
   nav ul {
@@ -48,22 +55,38 @@ export default {
     list-style: none;
     margin: 0;
     padding: 0;
-  }
-  nav li {
-    margin-right: 20px;
-  }
-  nav li:last-child {
-    margin-right: 0;
-  }
-  nav a {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 16px;
-    font-family: 'Inter', sans-serif;
-  }
-  nav a:hover {
-    text-decoration: underline;
-  }
-  </style>
+
+     li {
+      margin-right: 20px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+      
+      a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 16px;
+        font-family: "Inter", sans-serif;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
   
+      .logoutBtn{
+        background: none;
+        border: none;
+        color: #fff;
+        font-weight: 500;
+        font-size: 16px;
+        font-family: "Inter", sans-serif;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+</style>
