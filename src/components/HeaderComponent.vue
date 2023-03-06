@@ -1,17 +1,32 @@
 <template>
-    <header>
-      <div class="logo">
-        <router-link to="/">Galaxy Shop</router-link>
-      </div>
-      <nav>
-        <ul>
-          <li><router-link to="/">Home</router-link></li>
-          <li><router-link to="/logout">Logout</router-link></li>
-          <!-- <li><router-link to="/signup">Signup</router-link></li> -->
-        </ul>
-      </nav>
-    </header>
-  </template>
+  <header>
+    <div class="logo">
+      <router-link to="/">Galaxy Shop</router-link>
+    </div>
+    <nav>
+      <ul>
+        <li><router-link to="/">Home</router-link></li>
+        <li><button @click="showLogoutModal = true">Logout</button></li>
+      </ul>
+    </nav>
+    <logout-modal :show="showLogoutModal" @close="showLogoutModal = false" @logout="onLogout"></logout-modal>
+  </header>
+</template>
+
+<script>
+import LogoutModal from './LogoutModal.vue';
+
+export default {
+  components: {
+    LogoutModal,
+  },
+  data() {
+    return {
+      showLogoutModal: false,
+    };
+  },
+};
+</script>
   
   <style scoped>
   header {
