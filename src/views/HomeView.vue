@@ -1,6 +1,7 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
+    
+    <Header/>
   </div>
 </template>
 
@@ -10,6 +11,7 @@
 export default {
   name: "HomeView",
   components: {
+    Header: () => import("@/components/HeaderView.vue")
   },
 };
 </script>

@@ -1,5 +1,6 @@
 <template>
-  <div class="login-form">
+  <main class="loginWrap">
+    <div class="login-form">
     <form>
       <h2>Login</h2>
       <div class="form-group">
@@ -11,12 +12,6 @@
         <input type="password" id="password" v-model="password" required>
       </div>
       <div class="form-group">
-        <label for="remember-me">
-          <input type="checkbox" id="remember-me" v-model="rememberMe">
-          Remember me
-        </label>
-      </div>
-      <div class="form-group">
         <button type="submit" @click.prevent="login">Login</button>
       </div>
       <div class="form-links">
@@ -24,6 +19,7 @@
       </div>
     </form>
   </div>
+  </main>
 </template>
 
 <script>
@@ -44,6 +40,15 @@ export default {
 </script>
 
 <style scoped>
+.loginWrap {
+  background-color: #f1f1f1;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
 .login-form {
   max-width: 400px;
   margin: 0 auto;
@@ -84,6 +89,7 @@ button[type="submit"] {
   border-radius: 5px;
   border: none;
   cursor: pointer;
+  width: 100%;
 }
 button[type="submit"]:hover {
   background-color: #3e8e41;
