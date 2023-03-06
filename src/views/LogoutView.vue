@@ -28,7 +28,7 @@ export default {
 
 <style scoped>
 .logoutWrap {
-  background: url(../assets/Images/404Bg.png);
+  background: url(../assets/Images/404Bg.png) #0e0e0e;
   height: 100vh;
   width: 100vw;
   overflow: hidden;

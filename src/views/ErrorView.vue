@@ -37,12 +37,14 @@
         .errorText {
             h1 {
                 font-size: 24px;
-                margin-bottom: 10px;
+                line-height: 32px;
             }
+
             h2 {
-                font-size: 24px;
+                font-size: 28px;
                 margin-bottom: 10px;
             }
+
             p {
                 margin-bottom: 24px;
             }

@@ -1,22 +1,22 @@
 <template>
   <div class="home">
-    <Header/>
-    <div class="homeWrap">
-      <div class="homeForm">
-        <h2>Home</h2>
-        <p>Welcome to the home page</p>
-      </div>
-    </div>
+    <HeaderComponent />
+    <h1>Welcome to the home page!</h1>
+    <p>This is the content of the home page.</p>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
+import HeaderComponent from '@/components/HeaderComponent.vue';
 
 export default {
-  name: "HomeView",
+  name: 'HomeView',
   components: {
-    Header: () => import("@/components/HeaderView.vue")
-  },
+    HeaderComponent
+},
 };
 </script>
+
+<style>
+/* add your home page styles here */
+</style>

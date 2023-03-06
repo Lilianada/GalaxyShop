@@ -45,7 +45,7 @@ export default {
 
 <style scoped>
 .loginWrap {
-  background: url(../assets/Images/404Bg.png);
+  background: url(../assets/Images/404Bg.png) #0e0e0e no-repeat center center;
   height: 100vh;
   width: 100vw;
   overflow: hidden;
@@ -58,14 +58,13 @@ export default {
   width: 100%;
   margin: 0 auto;
   padding: 20px;
-
   background: #fff;
   border-radius: 10px;
   text-align: center;
 }
+
 h2 {
   font-size: 24px;
-  margin-bottom: 10px;
 }
 .welcomeText {
   margin-bottom: 24px;

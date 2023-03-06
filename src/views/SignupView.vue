@@ -42,7 +42,7 @@
   
   <style scoped>
   .signupWrap {
-    background: url(../assets/Images/404Bg.png);
+    background: url(../assets/Images/404Bg.png) #0e0e0e no-repeat center center;
     height: 100vh;
     width: 100vw;
     overflow: hidden;

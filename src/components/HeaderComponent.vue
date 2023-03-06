@@ -19,13 +19,15 @@
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    background-color: #4CAF50;
-    color: white;
+    background-color: #0e0e0e;
+    color: #ff9100;
   }
   .logo {
     font-size: 24px;
     font-weight: bold;
+    font-family: 'Inter', sans-serif;
   }
+
   nav ul {
     display: flex;
     list-style: none;
@@ -41,8 +43,9 @@
   nav a {
     color: white;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 500;
     font-size: 16px;
+    font-family: 'Inter', sans-serif;
   }
   nav a:hover {
     text-decoration: underline;
