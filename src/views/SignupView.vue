@@ -1,7 +1,7 @@
 <template>
     <main class="signupWrap">
       <div class="signup-form">
-        <form>
+        <form  @submit.prevent="handleSubmit">
             <h2>Signup</h2>
             <div class="form-group">
             <label for="username">Username</label>
@@ -33,10 +33,19 @@
       };
     },
     methods: {
-      signup() {
-        // your signup logic here
-      }
-    }
+    handleSubmit() {
+      this.$store.dispatch('signup', {
+        email: this.email,
+        username: this.username,
+        password: this.password,
+      });
+      
+      // Clear form fields
+      this.email = '';
+      this.username = '';
+      this.password = '';
+    },
+  },
   };
   </script>
   
