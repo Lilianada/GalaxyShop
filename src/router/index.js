@@ -1,9 +1,5 @@
-import VueRouter from 'vue-router';
+import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
-import LoginView from "../views/LoginView.vue";
-import SignupView from "../views/SignupView.vue";
-import ErrorView from "../views/ErrorView.vue";
-import store from '../store';
 
 const routes = [
   {
@@ -11,45 +7,32 @@ const routes = [
     name: "home",
     component: HomeView,
     meta: {
-      requiresAuth: true, // This route requires authentication
+      requiresAuth: true
     },
   },
   {
     path: "/login",
     name: "login",
-    component: LoginView,
+    component: () =>
+      import(/* webpackChunkName: "login" */ "../views/LoginView.vue"),
   },
   {
     path: "/signup",
     name: "signup",
-    component: SignupView,
+    component: () =>
+      import(/* webpackChunkName: "signup" */ "../views/SignupView.vue"),
   },
   {
     path: '/:pathMatch(.*)*',
     name: "not-found",
-    component: ErrorView,
+    component: () =>
+      import(/* webpackChunkName: "error" */ "../views/ErrorView.vue"),
   },
 ];
 
-const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes
-})
-
-router.beforeEach((to, from, next) => {
-  if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (!store.state.token) {
-      // If the user is not authenticated, redirect them to the login page.
-      next({
-        name: 'login'
-      })
-    } else {
-      next()
-    }
-  } else {
-    next()
-  }
-})
+const router = createRouter({
+  history: createWebHistory(process.env.BASE_URL),
+  routes,
+});
 
 export default router;

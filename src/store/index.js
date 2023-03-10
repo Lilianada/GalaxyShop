@@ -1,32 +1,33 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
+import Vue from 'vue'
+import Vuex from 'vuex'
 
-Vue.use(Vuex);
+Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    user: null,
-    token: null,
+    authenticated: false,
+    user: null
   },
   mutations: {
-    setUser(state, user) {
-      state.user = user;
+    setAuthenticated (state, isAuthenticated) {
+      state.authenticated = isAuthenticated
     },
-    setToken(state, token) {
-      state.token = token;
-    },
+    setUser (state, user) {
+      state.user = user
+    }
   },
   actions: {
-    signup({ commit }, userData) {
-      // Simulate API call to create user account
-      const newUser = { id: 1, ...userData };
-      commit('setUser', newUser);
-      
-      // Simulate API call to get authentication token
-      const authToken = 'abc123';
-      commit('setToken', authToken);
+    login ({ commit }, user) {
+      // Perform authentication logic here
+      commit('setAuthenticated', true)
+      commit('setUser', user)
     },
-  },
-});
+    logout ({ commit }) {
+      // Perform logout logic here
+      commit('setAuthenticated', false)
+      commit('setUser', null)
+    }
+  }
+})
 
-export default store;
+export default store

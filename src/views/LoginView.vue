@@ -1,7 +1,7 @@
 <template>
   <main class="loginWrap">
     <div class="login-form">
-      <form>
+      <form @submit.prevent="login">
         <h2>Login</h2>
         <p class="welcomeText">Welcome back to Galaxy Shop!</p>
         <div class="form-group">
@@ -36,9 +36,14 @@ export default {
     };
   },
   methods: {
-    login() {
-      // your login logic here
-    },
+    login () {
+      this.$store.dispatch('login', {
+        email: this.email,
+        password: this.password
+      }).then(() => {
+        this.$router.push('/')
+      })
+    }
   },
 };
 </script>
