@@ -4,8 +4,8 @@
         <form  @submit.prevent="handleSubmit">
             <h2>Signup</h2>
             <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" id="username" v-model="username" required>
+            <label for="username">Email</label>
+            <input type="text" id="email" v-model="email" required>
             </div>
             <div class="form-group">
             <label for="password">Password</label>
@@ -23,30 +23,26 @@
     </main>
   </template>
   
-  <script>
-  export default {
-    data() {
-      return {
-        username: '',
-        password: '',
-        rememberMe: false
-      };
-    },
-    methods: {
-    handleSubmit() {
-      this.$store.dispatch('signup', {
-        email: this.email,
-        username: this.username,
-        password: this.password,
-      });
-      
-      // Clear form fields
-      this.email = '';
-      this.username = '';
-      this.password = '';
-    },
-  },
-  };
+  <script setup>
+    import {ref} from "vue";
+    import {getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+    import { useRouter } from 'vue-router';
+
+    const email = ref("");
+    const password = ref("");
+    const router = useRouter()
+    const signup = () => {
+      createUserWithEmailAndPassword(getAuth(), email.value, password.value)
+      .then((data) => {
+        alert('Succesfully Registered!')
+        router.push('/')
+        console.log(data)
+      })
+      .catch((error) => {
+        alert(error.message)
+      })
+    }
+
   </script>
   
   <style scoped>

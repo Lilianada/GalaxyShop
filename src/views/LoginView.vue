@@ -5,12 +5,12 @@
         <h2>Login</h2>
         <p class="welcomeText">Welcome back to Galaxy Shop!</p>
         <div class="form-group">
-          <label for="username">Username</label>
-          <input type="text" id="username" v-model="username" required />
+          <label for="username">Email</label>
+          <input type="text" id="email" v-model="form.email" required />
         </div>
         <div class="form-group">
           <label for="password">Password</label>
-          <input type="password" id="password" v-model="password" required />
+          <input type="password" id="password" v-model="form.password" required />
         </div>
         <div class="form-group">
           <button type="submit" @click.prevent="login">Login</button>
@@ -30,20 +30,24 @@
 export default {
   data() {
     return {
-      username: "",
-      password: "",
-      rememberMe: false,
+      form: {
+        email: "",
+        password: "",
+        rememberMe: false,
+      },
     };
   },
   methods: {
     login () {
-      this.$store.dispatch('login', {
-        email: this.email,
-        password: this.password
-      }).then(() => {
-        this.$router.push('/')
-      })
+      this.$store.commit('login',
+        this.form.email,
+        this.form.password
+      )
+      this.$router.push("/");
     }
+  },
+  mounted() {
+    this.$store.commit("initializeStore");
   },
 };
 </script>

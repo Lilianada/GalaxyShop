@@ -17,7 +17,7 @@
     <logout-modal
       :show="showLogoutModal"
       @close="showLogoutModal = false"
-      @logout="onLogout"
+      @logout="handleLogout"
     ></logout-modal>
 </template>
 
@@ -31,6 +31,10 @@ export default {
   data() {
     return {
       showLogoutModal: false,
+      handleLogout() {
+        this.$store.commit("logout");
+        this.$router.push("/login");
+      },
     };
   },
 };

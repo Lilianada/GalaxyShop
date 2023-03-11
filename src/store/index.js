@@ -1,33 +1,31 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import { createStore } from "vuex";
 
-Vue.use(Vuex)
-
-const store = new Vuex.Store({
+export default createStore({
   state: {
-    authenticated: false,
-    user: null
+    email: "",
+    password: "",
   },
+  getters: {},
   mutations: {
-    setAuthenticated (state, isAuthenticated) {
-      state.authenticated = isAuthenticated
+    login(state, email, password, ) {
+      state.email = email;
+      state.password = password;
+      localStorage.setItem(("email", email),( password, "password"));
+      alert("You are logged in!");
     },
-    setUser (state, user) {
-      state.user = user
+    logout(state) {
+      state.email = "";
+      state.password = "";
+      localStorage.removeItem("email", "password");
+      alert("You are logged out!");
+    },
+    initializeStore(state) {
+      if (localStorage.getItem("email", "password")) {
+        state.email = localStorage.getItem("email");
+        state.password = localStorage.getItem("password");
+      }
     }
   },
-  actions: {
-    login ({ commit }, user) {
-      // Perform authentication logic here
-      commit('setAuthenticated', true)
-      commit('setUser', user)
-    },
-    logout ({ commit }) {
-      // Perform logout logic here
-      commit('setAuthenticated', false)
-      commit('setUser', null)
-    }
-  }
-})
-
-export default store
+  actions: {},
+  modules: {},
+});

@@ -11,7 +11,7 @@
       <div class="modal-footer">
         <button class="btn btn-primary" @click="handleLogout">
           Yes, log me out
-        </button>
+          </button>
         <button class="btn btn-secondary" @click="$emit('close')">
           Cancel
         </button>
@@ -30,12 +30,12 @@ export default {
   },
   methods: {
     handleLogout() {
-      // Perform logout actions here
-      // ...
-
-      // Redirect to login page
+      this.$store.commit("logout");
       this.$router.push("/login");
     },
+  },
+  mounted() {
+    this.$store.commit("initializeStore");
   },
 };
 </script>
