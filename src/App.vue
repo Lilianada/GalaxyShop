@@ -170,4 +170,6 @@ button:hover {
   color: #ff9100;
 } /*# sourceMappingURL=index.css.map *//*# sourceMappingURL=variable.css.map */
 
+/* Loader */
+  
 </style>
