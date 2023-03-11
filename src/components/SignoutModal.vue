@@ -3,15 +3,15 @@
     <div class="modal-overlay" @click="$emit('close')"></div>
     <div class="modal">
       <div class="modal-header">
-        <h3>Logout</h3>
+        <h3>Sign Out</h3>
       </div>
       <div class="modal-body">
-        <p>Are you sure you want to log out?</p>
+        <p>Are you sure you want to sign out?</p>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-primary" @click="handleLogout">
-          Yes, log me out
-          </button>
+        <button class="btn btn-primary" @click="handleSignout" v-if="isLoggedIn">
+          Yes, sign me out
+        </button>
         <button class="btn btn-secondary" @click="$emit('close')">
           Cancel
         </button>
@@ -19,26 +19,48 @@
     </div>
   </div>
 </template>
-<script>
-export default {
-  name: "LogoutModal",
-  props: {
-    show: {
-      type: Boolean,
-      required: true,
-    },
+
+<script setup>
+import { onMounted, ref, watch } from "vue";  
+import {getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { useRouter } from "vue-router";
+
+const show = ref(false);
+const router = useRouter();
+const isLoggedIn = ref(false);
+
+let auth;
+onMounted(() => {
+  auth = getAuth();
+  onAuthStateChanged (auth, (user) => {
+    if (user) {
+      isLoggedIn.value = true;
+    } else {
+      isLoggedIn.value = false;
+    }
+  });
+});
+
+// eslint-disable-next-line no-undef
+const props = defineProps({
+  show: {
+    type: Boolean,
+    default: false,
   },
-  methods: {
-    handleLogout() {
-      this.$store.commit("logout");
-      this.$router.push("/login");
-    },
-  },
-  mounted() {
-    this.$store.commit("initializeStore");
-  },
-};
+});
+
+const handleSignout = () => {
+  signOut(auth).then(() => {
+    router.push("/")
+  })
+}
+
+watch(() => props.show, (newValue) => {
+  show.value = newValue;
+});
+
 </script>
+
 
 <style scoped lang="scss">
 .modal-overlay {

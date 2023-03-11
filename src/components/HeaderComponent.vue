@@ -7,38 +7,41 @@
       <ul>
         <li><router-link to="/">Home</router-link></li>
         <li>
-          <button @click="showLogoutModal = true" class="logoutBtn">
-            Logout
+          <button @click="showSignoutModal = true" class="signoutBtn">
+            Sign out
           </button>
         </li>
       </ul>
     </nav>
   </header>
-    <logout-modal
-      :show="showLogoutModal"
-      @close="showLogoutModal = false"
-      @logout="handleLogout"
-    ></logout-modal>
+  <signout-modal
+    :show="showSignoutModal"
+    @close="showSignoutModal = false"
+    @signout="handleSignout"
+  ></signout-modal>
 </template>
 
 <script>
-import LogoutModal from "./LogoutModal.vue";
+import SignoutModal from "./SignoutModal.vue";
 
 export default {
   components: {
-    LogoutModal,
+    SignoutModal,
   },
   data() {
     return {
-      showLogoutModal: false,
-      handleLogout() {
-        this.$store.commit("logout");
-        this.$router.push("/login");
-      },
+      showSignoutModal: false,
     };
+  },
+  methods: {
+    handleSignout() {
+      this.$store.commit("signout");
+      this.$router.push("/signin");
+    },
   },
 };
 </script>
+
 
 <style scoped lang="scss">
 header {
@@ -79,7 +82,7 @@ header {
         }
       }
   
-      .logoutBtn{
+      .signoutBtn{
         background: none;
         border: none;
         color: #fff;

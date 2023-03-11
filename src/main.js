@@ -7,6 +7,7 @@ import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
+createApp(App).use(store).use(router).mount("#app");
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyDwGjROLRHa55d2K8980Hl7-Y1rgWh43LI",
@@ -20,4 +21,3 @@ const firebaseConfig = {
 // Initialize Firebase
 initializeApp(firebaseConfig);
 
-createApp(App).use(store).use(router).mount("#app");

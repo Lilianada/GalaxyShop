@@ -7,11 +7,11 @@ export default createStore({
   },
   getters: {},
   mutations: {
-    login(state, email, password, ) {
+    signin(state, email, password, ) {
       state.email = email;
       state.password = password;
       localStorage.setItem(("email", email),( password, "password"));
-      alert("You are logged in!");
+      alert("Succesfully logged in!");
     },
     logout(state) {
       state.email = "";

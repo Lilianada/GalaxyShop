@@ -2,24 +2,24 @@
     <main class="signupWrap">
       <div v-if="loading" class="loader"></div>
     <div class="signup-form" v-if="!loading">
-        <form  @submit.prevent="handleSubmit">
+        <form>
             <h2>Signup</h2>
             <div class="form-group">
-            <label for="username">Email</label>
-            <input type="text" id="email" v-model="email" required>
+            <label for="email">Email</label>
+            <input type="email" id="email" v-model="email" class="formField" required>
             </div>
             <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" id="password" v-model="password" 
+            <input type="password" id="password" v-model="password" class="formField"
                  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$" 
                  required>      
                  <div class="error-message" v-if="passwordErrorMsg">{{ passwordErrorMsg }}</div>      
             </div>
             <div class="form-group">
-            <button type="submit" @click.prevent="signup">Signup</button>
+            <button type="submit" @click.prevent="handleSignup">Signup</button>
             </div>
             <div class="form-links">
-                <router-link to="/login">Already a user? Login</router-link> | 
+                <router-link to="/signin">Already a user? Login</router-link> | 
                 <router-link to="/not-found">Forgot password</router-link>
             </div>
         </form>
@@ -28,10 +28,10 @@
   </template>
   
   <script setup>
+    import { watchEffect } from "@vue/runtime-core";
+    import { useRouter } from 'vue-router';
     import {ref} from "vue";
     import {getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-    import { useRouter } from 'vue-router';
-  import { watchEffect } from "@vue/runtime-core";
 
     const email = ref("");
     const password = ref("");
@@ -39,7 +39,7 @@
     const loading = ref(false);
     const passwordErrorMsg = ref("");
 
-    const signup = () => {
+    const handleSignup = () => {
      loading.value = true;
       createUserWithEmailAndPassword(getAuth(), email.value, password.value)
       .then((data) => {
@@ -106,8 +106,7 @@
     font-weight: bold;
     margin-bottom: 5px;
   }
-  input[type="text"],
-  input[type="password"] {
+  .formField {
     width: 100%;
     padding: 10px;
     font-size: 16px;
@@ -155,6 +154,7 @@
     position: absolute;
     top: 40%;
     left:50%;
+    transform: translateY(-50%, -50%)
   }
 
   @keyframes spin {
