@@ -1,6 +1,6 @@
 <template>
   <div v-if="show">
-    <div class="modal-overlay" @click="$emit('close')"></div>
+    <div class="modal-overlay"></div>
     <div class="modal">
       <div class="modal-header">
         <h3>Sign Out</h3>
@@ -9,7 +9,7 @@
         <p>Are you sure you want to sign out?</p>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-primary" @click="handleSignout" v-if="isLoggedIn">
+        <button class="btn btn-primary" @click="handleSignout" >
           Yes, sign me out
         </button>
         <button class="btn btn-secondary" @click="$emit('close')">
@@ -51,7 +51,7 @@ const props = defineProps({
 
 const handleSignout = () => {
   signOut(auth).then(() => {
-    router.push("/")
+    router.push("/signin");
   })
 }
 

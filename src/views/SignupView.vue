@@ -44,7 +44,7 @@
       createUserWithEmailAndPassword(getAuth(), email.value, password.value)
       .then((data) => {
         alert('Succesfully Registered!')
-        router.push('/')
+        router.push('/shop')
         console.log(data)
       })
       .catch((error) => {
