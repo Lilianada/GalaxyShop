@@ -154,7 +154,7 @@ button:hover {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  background: #ff9100;
+  background: #4caf50;
   color: #000000;
   border: none;
   font-size: 16px;
@@ -167,7 +167,7 @@ button:hover {
 /*-------------[Body Style] -------------*/
 /*=====================================*/
 .primaryText {
-  color: #ff9100;
+  color: #4caf50;
 } /*# sourceMappingURL=index.css.map *//*# sourceMappingURL=variable.css.map */
 
 /* Loader */

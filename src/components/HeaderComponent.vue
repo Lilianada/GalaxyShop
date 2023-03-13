@@ -5,7 +5,7 @@
     </div>
     <nav>
       <ul>
-        <li><router-link to="/">Home</router-link></li>
+        <li><router-link to="/home">Home</router-link></li>
         <li>
           <button @click="showSignoutModal = true" class="signoutBtn">
             Sign out
@@ -36,7 +36,7 @@ export default {
   methods: {
     handleSignout() {
       this.$store.commit("signout");
-      this.$router.push("/signin");
+      this.$router.push("/");
     },
   },
 };
@@ -54,7 +54,7 @@ header {
     font-size: 24px;
     font-weight: bold;
     font-family: "Inter", sans-serif;
-    color: #ff9100;
+    color: #4caf50;
   }
 
   nav ul {
