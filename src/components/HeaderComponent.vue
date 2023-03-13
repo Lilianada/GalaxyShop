@@ -6,6 +6,7 @@
     <nav>
       <ul>
         <li><router-link to="/home">Home</router-link></li>
+        <li><router-link to="/shop">Shop</router-link></li>
         <li>
           <button @click="showSignoutModal = true" class="signoutBtn">
             Sign out

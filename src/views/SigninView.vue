@@ -62,6 +62,8 @@ const handleSignin = () => {
   signInWithEmailAndPassword(auth, email.value, password.value)
     .then((data) => {
       alert("Successfully signed in!");
+      const user = data.user;
+      localStorage.setItem("user", JSON.stringify(user));
       router.push("/shop");
       console.log(data);
     })
@@ -85,6 +87,7 @@ const handleSignin = () => {
       loading.value = false;
     });
 };
+
 
 const validatePassword = () => {
   if (password.value === "") {

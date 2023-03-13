@@ -57,6 +57,8 @@ const handleSignup = () => {
   createUserWithEmailAndPassword(getAuth(), email.value, password.value)
     .then((data) => {
       alert("Succesfully Registered!");
+      const user = data.user;
+      localStorage.setItem("user", JSON.stringify(user));
       router.push("/shop");
       console.log(data);
     })

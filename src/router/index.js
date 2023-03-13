@@ -1,5 +1,6 @@
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { createRouter, createWebHistory } from "vue-router";
+import HomeViewVue from "../views/HomeView.vue";
 import ShopView from "../views/ShopView.vue";
 
 const routes = [
@@ -7,6 +8,14 @@ const routes = [
     path: "/shop",
     name: "shop",
     component: ShopView,
+    meta: {
+      requiresAuth: true
+    },
+  },
+  {
+    path: "/home",
+    name: "home",
+    component: HomeViewVue,
     meta: {
       requiresAuth: true
     },
