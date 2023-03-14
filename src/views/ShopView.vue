@@ -1,32 +1,28 @@
 <template>
-  <section class="shop">
+  <div v-if="loading" class="loader"></div>
+  <section class="shop" v-if="!loading">
     <HeaderComponent />
     <h1>Welcome back {{ name }}</h1>
     <div class="productWrap">
       <div class="product-list">
         <ProductCard
-          v-for="(product) in paginatedProducts"
+          v-for="product in paginatedProducts"
           :key="product.id"
           :product="product"
         />
-    </div>
-    <div class="pagination">
-      <button
-        :disabled="currentPage === 1"
-        @click="currentPage--"
-      >
-        Previous
-      </button>
-      <button
-        :disabled="currentPage === totalPages"
-        @click="currentPage++"
-      >
-        Next
-      </button>
-    </div>
+      </div>
+      <div class="pagination">
+        <button :disabled="currentPage === 1" @click="currentPage--">
+          Previous
+        </button>
+        <button :disabled="currentPage === totalPages" @click="currentPage++">
+          Next
+        </button>
+      </div>
     </div>
   </section>
 </template>
+
 <script>
 import HeaderComponent from "@/components/HeaderComponent.vue";
 import { computed, ref, watchEffect } from "vue";
@@ -53,11 +49,18 @@ export default {
     const products = ref([]);
     const currentPage = ref(1);
     const pageSize = 1;
+    const loading = ref(false);
 
     const fetchProducts = async () => {
-      const response = await axios.get("https://dummyjson.com/products");
-      products.value = response.data;
-      console.log(products.value.products);
+      loading.value = true;
+      try {
+        const response = await axios.get("https://dummyjson.com/products");
+        products.value.products = response.data.products;
+      } catch (error) {
+        console.log(error);
+      } finally {
+        loading.value = false;
+      }
     };
 
     const paginatedProducts = computed(() => {
@@ -69,12 +72,16 @@ export default {
     });
 
     watchEffect(() => {
-  if (products.value.length > 0) {
-    const startIndex = (currentPage.value - 1) * pageSize;
-    const endIndex = startIndex + pageSize;
-    paginatedProducts.value = products.value.length > 0 ? products.value.slice(startIndex, endIndex) : [];
-  }
-});
+      if (products.value.length > 0) {
+        const startIndex = (currentPage.value) * pageSize;
+        const endIndex = startIndex + pageSize;
+        paginatedProducts.value =
+          products.value.products.length > 0
+            ? products.value.products.slice(startIndex, endIndex)
+            : [];
+      }
+      console.log(paginatedProducts.value)
+    });
 
     fetchProducts();
 
@@ -85,6 +92,7 @@ export default {
       paginatedProducts,
       totalPages,
       name,
+      loading,
     };
   },
 };
@@ -93,9 +101,9 @@ export default {
 <style scoped>
 /* add your shop page styles here */
 .shop h1 {
-    font-size: 30px;
-    margin: 2rem;
-  }
+  font-size: 30px;
+  margin: 2rem;
+}
 
 .productWrap {
   height: 100%;
@@ -104,24 +112,34 @@ export default {
 }
 
 .product-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media screen and (min-width: 900px) {
+  .product-list {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     justify-content: flex-start;
     align-items: flex-start;
     width: 100%;
     gap: 1rem;
+  }
 }
 .pagination {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  margin-top: 2rem;
 }
 .pagination button {
-  padding: 10px;
-  border: 1px solid #000;
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
   border-radius: 5px;
-  background-color: #fff;
-  cursor: pointer;
+  border: none;
+  width: 8rem;
 }
 
 .pagination button:disabled {
@@ -134,5 +152,26 @@ export default {
   color: #fff;
 }
 
+.loader {
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid #3498db;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+  margin: auto;
+  margin-top: 50px;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+}
 
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 </style>

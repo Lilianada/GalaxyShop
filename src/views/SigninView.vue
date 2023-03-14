@@ -204,7 +204,7 @@ button
   margin-top: 50px;
   position: absolute;
   top: 40%;
-  left: 50%;
+  left: 40%;
 }
 
 @keyframes spin {

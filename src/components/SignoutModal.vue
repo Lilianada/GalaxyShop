@@ -51,7 +51,7 @@ const props = defineProps({
 
 const handleSignout = () => {
   signOut(auth).then(() => {
-    router.push("/signin");
+    router.push("/");
   })
 }
 
