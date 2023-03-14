@@ -63,24 +63,6 @@ const router = useRouter();
 const loading = ref(false);
 const passwordErrorMsg = ref("");
 
-// const handleSignup = () => {
-//   loading.value = true;
-//   createUserWithEmailAndPassword(getAuth(), email.value, password.value, displayName.value)
-//     .then((data) => {
-//       alert("Succesfully Registered!");
-//       const user = data.user;
-//       localStorage.setItem("user", JSON.stringify(user));
-//       router.push("/shop");
-//       console.log(data);
-//     })
-//     .catch((error) => {
-//       alert(error.message);
-//     })
-//     .finally(() => {
-//       loading.value = false;
-//     });
-// };
-
 const handleSignup = () => {
   loading.value = true;
   createUserWithEmailAndPassword(getAuth(), email.value, password.value)
