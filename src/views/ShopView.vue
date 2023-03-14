@@ -2,7 +2,7 @@
   <div v-if="loading" class="loader"></div>
   <section class="shop" v-if="!loading">
     <HeaderComponent />
-    <h1>Welcome back {{ name }}</h1>
+    <h1>Welcome back {{ user.displayName }}</h1>
     <div class="productWrap">
       <div class="product-list">
         <ProductCard
@@ -27,8 +27,8 @@
 import HeaderComponent from "@/components/HeaderComponent.vue";
 import { computed, ref, watchEffect } from "vue";
 import axios from "axios";
-import { getAuth } from "firebase/auth";
 import ProductCard from "@/components/ProductCard.vue";
+import { useCurrentUser } from "@/composables/index.js";
 
 export default {
   name: "ShopView",
@@ -37,19 +37,12 @@ export default {
     ProductCard,
   },
   setup() {
-    const auth = getAuth();
-    const name = computed(() => {
-      const user = auth.currentUser;
-      if (user) {
-        return user.email.split("@")[0];
-      }
-      return "";
-    });
-
     const products = ref([]);
     const currentPage = ref(1);
     const pageSize = 1;
     const loading = ref(false);
+    const { user } = useCurrentUser();
+
 
     const fetchProducts = async () => {
       loading.value = true;
@@ -91,7 +84,7 @@ export default {
       pageSize,
       paginatedProducts,
       totalPages,
-      name,
+      user,
       loading,
     };
   },

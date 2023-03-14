@@ -1,15 +1,14 @@
 <template>
   <div class="shop">
     <HeaderComponent />
-    <h1>Welcome back {{ name }}!</h1>
+    <h1>Welcome back {{ user.displayName }}!</h1>
     <p>This is the content of the shop page.</p>
   </div>
 </template>
 
 <script>
 import HeaderComponent from "@/components/HeaderComponent.vue";
-import { computed } from "vue";
-import { getAuth } from "firebase/auth";
+import { useCurrentUser } from "@/composables/index.js";
 
 export default {
   name: "HomeView",
@@ -17,19 +16,14 @@ export default {
     HeaderComponent,
   },
   setup() {
-    const auth = getAuth();
+    const { user, logout } = useCurrentUser();
 
-    const name = computed(() => {
-      const user = auth.currentUser;
-      if (user) {
-        return user.email.split("@")[0];
-      }
-      return "";
-    });
-
-    return {
-      name,
+    const handleLogout = async () => {
+      await logout();
+      '/'
     };
+
+    return { user, handleLogout };
   },
 };
 </script>

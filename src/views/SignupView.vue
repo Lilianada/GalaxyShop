@@ -15,6 +15,16 @@
           />
         </div>
         <div class="form-group">
+          <label for="name">Username</label>
+          <input
+            type="name"
+            id="displayName"
+            v-model="displayName"
+            class="formField"
+            required
+          />
+        </div>
+        <div class="form-group">
           <label for="password">Password</label>
           <input
             type="password"
@@ -44,23 +54,43 @@
 import { watchEffect } from "@vue/runtime-core";
 import { useRouter } from "vue-router";
 import { ref } from "vue";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 const email = ref("");
 const password = ref("");
+const displayName = ref("");
 const router = useRouter();
 const loading = ref(false);
 const passwordErrorMsg = ref("");
 
+// const handleSignup = () => {
+//   loading.value = true;
+//   createUserWithEmailAndPassword(getAuth(), email.value, password.value, displayName.value)
+//     .then((data) => {
+//       alert("Succesfully Registered!");
+//       const user = data.user;
+//       localStorage.setItem("user", JSON.stringify(user));
+//       router.push("/shop");
+//       console.log(data);
+//     })
+//     .catch((error) => {
+//       alert(error.message);
+//     })
+//     .finally(() => {
+//       loading.value = false;
+//     });
+// };
+
 const handleSignup = () => {
   loading.value = true;
   createUserWithEmailAndPassword(getAuth(), email.value, password.value)
-    .then((data) => {
-      alert("Succesfully Registered!");
-      const user = data.user;
-      localStorage.setItem("user", JSON.stringify(user));
-      router.push("/shop");
-      console.log(data);
+    .then((userCredential) => {
+      const user = userCredential.user;
+      return updateProfile(user, { displayName: displayName.value }).then(() => {
+        localStorage.setItem("user", JSON.stringify(user));
+        router.push("/shop");
+        alert("Successfully registered!");
+      });
     })
     .catch((error) => {
       alert(error.message);
@@ -69,6 +99,7 @@ const handleSignup = () => {
       loading.value = false;
     });
 };
+
 
 const validatePassword = () => {
   if (password.value === "") {

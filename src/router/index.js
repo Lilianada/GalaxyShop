@@ -65,7 +65,7 @@ router.beforeEach(async(to, from, next) => {
       next();
     } else {
       alert("You must be logged in to view this page");
-      next("/signin");
+      next("/");
     }
   } else {
     next();
