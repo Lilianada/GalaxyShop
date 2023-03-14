@@ -26,6 +26,7 @@
 import SignoutModal from "./SignoutModal.vue";
 
 export default {
+  name: "HeaderComponent",
   components: {
     SignoutModal,
   },
