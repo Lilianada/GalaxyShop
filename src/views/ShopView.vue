@@ -90,7 +90,6 @@ export default {
   },
 };
 </script>
-
 <style scoped>
 /* add your shop page styles here */
 .shop h1 {
@@ -109,22 +108,43 @@ export default {
   flex-wrap: wrap;
 }
 
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 576px) {
+  /* Small screen size */
+  .product-list {
+    flex-direction: column;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  /* Tablet screen size */
   .product-list {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    justify-content: flex-start;
-    align-items: flex-start;
-    width: 100%;
+    grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
   }
 }
+
+@media screen and (min-width: 992px) {
+  /* Desktop screen size */
+  .product-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  /* Large desktop screen size */
+  .product-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
 .pagination {
   display: flex;
   justify-content: space-between;
   width: 100%;
   margin-top: 2rem;
 }
+
 .pagination button {
   background-color: #4caf50;
   color: white;

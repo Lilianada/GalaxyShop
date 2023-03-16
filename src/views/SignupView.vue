@@ -42,7 +42,7 @@
           <button type="submit" @click.prevent="handleSignup">Signup</button>
         </div>
         <div class="form-links">
-          <router-link to="/">Already a user? Login</router-link> |
+          <router-link to="/">Already a user? SignIn</router-link> |
           <router-link to="/not-found">Forgot password</router-link>
         </div>
       </form>
