@@ -9,6 +9,7 @@
           v-for="product in paginatedProducts"
           :key="product.id"
           :product="product"
+      @click="navigateToProductDetails(product)"
         />
       </div>
       <div class="pagination">
@@ -87,6 +88,14 @@ export default {
       user,
       loading,
     };
+  },
+  methods: {
+    navigateToProductDetails(product) {
+      this.$router.push({
+        name: "productDetails",
+        params: { id: product.id, product: JSON.stringify(product) },
+      });
+    },
   },
 };
 </script>

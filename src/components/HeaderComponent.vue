@@ -30,7 +30,7 @@
         <span></span>
       </button>
 
-      <nav :class="{ navbar: show-navbar }">
+      <nav :class="{ navbar, showNavbar: navbar }">
         <ul class="navList">
           <li class="navItem">
             <h6 class="navTitle">Galaxy Shop</h6>
@@ -119,22 +119,24 @@ header {
       outline: none;
     }
 
-    .closebar{
-      display: flex;
+    nav{
+      position: absolute;
+      left: -120%;
     }
     .navbar {
-      display: grid;
+      display: flex;
+      flex-direction: column;
       height: 100vh;
-      width: 100vw;
+      width: 85vw;
       position: fixed;
       overflow: scroll;
       z-index: 2;
       top: 0;
-      left: -120%;
+      left: -0%;
       background: #0e0e0e;
       text-align: left;
       padding: 1.5rem 1rem 1rem;
-      transition: all 800ms ease-in-out;
+      transition: left 0.8s ease-in-out;
 
       @media screen and (min-width: 414px) {
         display: flex;
@@ -158,7 +160,7 @@ header {
 
           .navTitle {
             color: #4caf50;
-            font-size: 16px;
+            font-size: 24px;
             font-family: "Work Sans", sans-serif;
             font-weight: 500;
             text-transform: none;
@@ -166,7 +168,7 @@ header {
 
           .navLink {
             color: #fff;
-            font-size: 24px;
+            font-size: 20px;
             font-family: "Inter", sans-serif;
             font-weight: 500;
             text-transform: capitalize;
@@ -184,10 +186,6 @@ header {
       font-family: "Inter", sans-serif;
       font-weight: 500;
       text-transform: capitalize;
-    }
-    .show-navbar {
-      left: 0;
-      transition: left 0.8s ease-in-out;
     }
 
     .signoutBtn {
@@ -232,6 +230,10 @@ header {
 
         &:last-child {
           bottom: 0;
+        }
+
+        &:hover{
+          background-color: #4caf50;
         }
       }
     }

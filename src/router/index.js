@@ -2,6 +2,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { createRouter, createWebHistory } from "vue-router";
 import HomeViewVue from "../views/HomeView.vue";
 import ShopView from "../views/ShopView.vue";
+import ProductDetails from "../components/ProductDetails.vue";
 
 const routes = [
   {
@@ -14,9 +15,9 @@ const routes = [
   },
   {
     path: "/products/:id",
-    name: "SingleProduct",
-    component: () =>
-      import(/* webpackChunkName: "singleProduct" */ "../components/SingleProduct.vue"),
+    name: "product",
+    component: ProductDetails,
+    props: (route) => ({ product: JSON.parse(route.params.product) }),
   },
   {
     path: "/home",
