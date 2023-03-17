@@ -1,19 +1,17 @@
 <template>
-  <router-link :to="{ name: 'Product', params: { id: product.id }}">
-    <div class="product">
-      <div class="product-images">
-        <img :src="product.images[0]" alt="" />
-      </div>
-      <div class="product-info">
-        <h2>{{ product.title }}</h2>
-        <p class="product-price">$ {{ product.price }}</p>
-        <p class="product-rating">
-          Rating: {{ product.rating }}
-          {{ product.rating >= 4 ? "⭐️⭐️⭐️⭐️" : "⭐️⭐️⭐️" }}
-        </p>
-      </div>
+  <div class="product" @click="viewProductDetails">
+    <div class="product-images">
+      <img :src="product.images[0]" alt="" />
     </div>
-  </router-link>
+    <div class="product-info">
+      <h2>{{ product.title }}</h2>
+      <p class="product-price">$ {{ product.price }}</p>
+      <p class="product-rating">
+        Rating: {{ product.rating }}
+        {{ product.rating >= 4 ? "⭐️⭐️⭐️⭐️" : "⭐️⭐️⭐️" }}
+      </p>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -25,9 +23,16 @@ export default {
       required: true,
     },
   },
+  methods: {
+    viewProductDetails() {
+      this.$router.push({
+        name: "ProductDetails",
+        params: { id: this.product.id },
+      });
+    },
+  },
 };
 </script>
-
 
 <style scoped>
 .product {
@@ -43,24 +48,22 @@ export default {
   overflow: hidden;
 }
 
-
 @media screen and (min-width: 900px) {
-    
 }
-.product-images{
-    width: 100%;
+.product-images {
+  width: 100%;
 }
-.product-images img{
+.product-images img {
   width: 100%;
   height: 220px;
   background-size: cover;
   margin-bottom: 10px;
 }
-.product-info{
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    width: 100%;
+.product-info {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  width: 100%;
 }
 .product-info h2 {
   font-size: 20px;
@@ -68,10 +71,10 @@ export default {
   line-height: 24px;
 }
 .product-info p {
-    margin: 8px 0;
-    max-height: 80px;
-    overflow: hidden;
-    line-height: 17px;
+  margin: 8px 0;
+  max-height: 80px;
+  overflow: hidden;
+  line-height: 17px;
 }
 .product-price {
   font-weight: bold;

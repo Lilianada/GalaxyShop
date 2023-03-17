@@ -8,7 +8,7 @@
       <nav class="navbar">
         <ul class="navList">
           <li class="navItem"><router-link to="/home" class="navLink">Home</router-link></li>
-          <li class="navItem"><router-link to="/shop" class="navLink">Shop</router-link></li>
+          <li class="navItem"><router-link to="/products" class="navLink">Shop</router-link></li>
           <li class="navItem">
             <button @click="showSignoutModal = true" class="signoutBtn">
               Sign out
@@ -40,7 +40,7 @@
          <!-- Navigation Lis -->
         <ul class="navList">
           <li class="navItem"><router-link to="/home" class="navLink">Home</router-link></li>
-          <li class="navItem"><router-link to="/shop" class="navLink">Shop</router-link></li>
+          <li class="navItem"><router-link to="/products" class="navLink">Shop</router-link></li>
           <li class="navItem">
             <button @click="showSignoutModal = true" class="signoutBtn">
               Sign out
@@ -205,7 +205,7 @@ header {
     .toggleBtn {
       display: block;
       position: relative;
-      width: 25px;
+      width: 35px;
       height: 25px;
       background: none;
       border: none;

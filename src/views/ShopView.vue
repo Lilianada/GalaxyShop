@@ -93,8 +93,9 @@ export default {
 <style scoped>
 /* add your shop page styles here */
 .shop h1 {
-  font-size: 30px;
+  font-size: 24px;
   margin: 2rem;
+  line-height: 32px;
 }
 
 .productWrap {
@@ -176,7 +177,7 @@ export default {
   margin-top: 50px;
   position: absolute;
   top: 40%;
-  left: 50%;
+  left: 40%;
 }
 
 @keyframes spin {

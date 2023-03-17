@@ -5,18 +5,18 @@ import ShopView from "../views/ShopView.vue";
 
 const routes = [
   {
-    path: "/shop",
-    name: "shop",
+    path: "/products",
+    name: "products",
     component: ShopView,
     meta: {
       requiresAuth: true
     },
   },
   {
-    path: "/product/:id",
-    name: "Product",
+    path: "/products/:id",
+    name: "SingleProduct",
     component: () =>
-      import(/* webpackChunkName: "signin" */ "../components/SingleProduct.vue"),
+      import(/* webpackChunkName: "singleProduct" */ "../components/SingleProduct.vue"),
   },
   {
     path: "/home",
