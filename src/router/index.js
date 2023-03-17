@@ -13,6 +13,12 @@ const routes = [
     },
   },
   {
+    path: "/product/:id",
+    name: "Product",
+    component: () =>
+      import(/* webpackChunkName: "signin" */ "../components/SingleProduct.vue"),
+  },
+  {
     path: "/home",
     name: "home",
     component: HomeViewVue,

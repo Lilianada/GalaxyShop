@@ -1,4 +1,5 @@
 <template>
+  <router-link :to="{ name: 'Product', params: { id: product.id }}">
     <div class="product">
       <div class="product-images">
         <img :src="product.images[0]" alt="" />
@@ -12,18 +13,21 @@
         </p>
       </div>
     </div>
-  </template>
-  <script>
-  export default {
-    name: "ProductCard",
-    props: {
-      product: {
-        type: Object,
-        required: true,
-      },
+  </router-link>
+</template>
+
+<script>
+export default {
+  name: "ProductCard",
+  props: {
+    product: {
+      type: Object,
+      required: true,
     },
-  };
-  </script>
+  },
+};
+</script>
+
 
 <style scoped>
 .product {
