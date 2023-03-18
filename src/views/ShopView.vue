@@ -26,7 +26,7 @@
 
 <script>
 import HeaderComponent from "@/components/HeaderComponent.vue";
-import { computed, ref, watchEffect } from "vue";
+import { computed, ref } from "vue";
 import axios from "axios";
 import ProductCard from "@/components/ProductCard.vue";
 import { useCurrentUser } from "@/composables/index.js";
@@ -49,7 +49,7 @@ export default {
   setup() {
     const products = ref([]);
     const currentPage = ref(1);
-    const pageSize = 1;
+    const pageSize = 15; // updated page size to 15
     const loading = ref(false);
     const { user } = useCurrentUser();
 
@@ -66,22 +66,13 @@ export default {
     };
 
     const paginatedProducts = computed(() => {
-      return products.value.products;
+      const startIndex = (currentPage.value - 1) * pageSize;
+      const endIndex = startIndex + pageSize;
+      return products.value.products.slice(startIndex, endIndex);
     });
 
     const totalPages = computed(() => {
-      return Math.ceil(products.value.length / pageSize);
-    });
-
-    watchEffect(() => {
-      if (products.value.length > 0) {
-        const startIndex = currentPage.value * pageSize;
-        const endIndex = startIndex + pageSize;
-        paginatedProducts.value =
-          products.value.products.length > 0
-            ? products.value.products.slice(startIndex, endIndex)
-            : [];
-      }
+      return Math.ceil(products.value.products.length / pageSize);
     });
 
     fetchProducts();

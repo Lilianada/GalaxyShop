@@ -14,11 +14,11 @@ const routes = [
     },
   },
   {
-    path: '/products/:id',
-    name: 'product-details',
+    path: "/product/:id",
+    name: "product-details",
     component: ProductDetails,
     props: true
-  },
+  },   
   {
     path: "/home",
     name: "home",
