@@ -3,6 +3,7 @@
   <div class="home">
     <h1>Welcome back {{ user.displayName }}!</h1>
     <p>Pick up from where you left off.</p>
+    <router-link to="/products">Go to Shop</router-link>
   </div>
 </template>
 
@@ -50,6 +51,19 @@ export default {
     color: white;
     font-size: 1.5rem;
   }
+  a {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #4caf50;
+      color: #fff;
+      border-radius: 5px;
+      text-decoration: none;
+      margin-top: 2rem;
+
+      &:hover {
+        background-color: #3e8e41;
+      }
+    }
 }
 
 </style>

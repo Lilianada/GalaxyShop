@@ -14,10 +14,10 @@ const routes = [
     },
   },
   {
-    path: "/products/:id",
-    name: "product",
+    path: '/products/:id',
+    name: 'product-details',
     component: ProductDetails,
-    props: (route) => ({ product: JSON.parse(route.params.product) }),
+    props: true
   },
   {
     path: "/home",

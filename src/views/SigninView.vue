@@ -64,7 +64,7 @@ const handleSignin = () => {
       alert("Successfully signed in!");
       const user = data.user;
       localStorage.setItem("user", JSON.stringify(user));
-      router.push("/shop");
+      router.push("/home");
       console.log(data);
     })
     .catch((error) => {

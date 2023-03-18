@@ -9,7 +9,7 @@
           v-for="product in paginatedProducts"
           :key="product.id"
           :product="product"
-      @click="navigateToProductDetails(product)"
+          @click="navigateToProductDetails(product)"
         />
       </div>
       <div class="pagination">
@@ -37,13 +37,21 @@ export default {
     HeaderComponent,
     ProductCard,
   },
+  methods: {
+    navigateToProductDetails(product) {
+      this.$router.push({
+        name: "product-details",
+        params: { id: product.id },
+        props: { product },
+      });
+    },
+  },
   setup() {
     const products = ref([]);
     const currentPage = ref(1);
     const pageSize = 1;
     const loading = ref(false);
     const { user } = useCurrentUser();
-
 
     const fetchProducts = async () => {
       loading.value = true;
@@ -67,14 +75,13 @@ export default {
 
     watchEffect(() => {
       if (products.value.length > 0) {
-        const startIndex = (currentPage.value) * pageSize;
+        const startIndex = currentPage.value * pageSize;
         const endIndex = startIndex + pageSize;
         paginatedProducts.value =
           products.value.products.length > 0
             ? products.value.products.slice(startIndex, endIndex)
             : [];
       }
-      console.log(paginatedProducts.value)
     });
 
     fetchProducts();
@@ -89,21 +96,14 @@ export default {
       loading,
     };
   },
-  methods: {
-    navigateToProductDetails(product) {
-      this.$router.push({
-        name: "productDetails",
-        params: { id: product.id, product: JSON.stringify(product) },
-      });
-    },
-  },
 };
 </script>
+
 <style scoped>
 /* add your shop page styles here */
 .shop h1 {
   font-size: 24px;
-  margin: 2rem;
+  margin: 1rem;
   line-height: 32px;
 }
 
@@ -131,6 +131,11 @@ export default {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
+  }
+
+  .shop h1 {
+    margin: 1rem auto;
+    width: 90%;
   }
 }
 
@@ -186,7 +191,8 @@ export default {
   margin-top: 50px;
   position: absolute;
   top: 40%;
-  left: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 @keyframes spin {

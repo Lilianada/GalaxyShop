@@ -70,7 +70,7 @@ const handleSignup = () => {
       const user = userCredential.user;
       return updateProfile(user, { displayName: displayName.value }).then(() => {
         localStorage.setItem("user", JSON.stringify(user));
-        router.push("/shop");
+        router.push("/home");
         alert("Successfully registered!");
       });
     })

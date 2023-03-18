@@ -1,5 +1,6 @@
 <template>
-  <div class="product" @click="viewProductDetails">
+  <router-link :to="{ name: 'product-details', params: { id: product.id }}" :product="product">
+  <div class="product" :product="product">
     <div class="product-images">
       <img :src="product.images[0]" alt="" />
     </div>
@@ -12,6 +13,8 @@
       </p>
     </div>
   </div>
+</router-link>
+
 </template>
 
 <script>
@@ -26,7 +29,7 @@ export default {
   methods: {
     viewProductDetails() {
       this.$router.push({
-        name: "ProductDetails",
+        name: "product-details",
         params: { id: this.product.id },
       });
     },
@@ -44,7 +47,7 @@ export default {
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
   margin: 10px;
   height: 370px;
-  width: 300px;
+  max-width: 300px;
   overflow: hidden;
 }
 

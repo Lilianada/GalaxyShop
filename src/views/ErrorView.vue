@@ -8,7 +8,7 @@
           The page you are looking for might have been removed, had its name
           changed, or doesn't exist.
         </p>
-        <router-link to="/">Go to Home</router-link>
+        <router-link to="/home">Go to Home</router-link>
       </div>
     </div>
   </section>

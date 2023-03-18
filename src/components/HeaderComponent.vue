@@ -193,7 +193,7 @@ header {
       border: none;
       color: #fff;
       font-weight: 500;
-      font-size: 16px;
+      font-size: 20px;
       font-family: "Inter", sans-serif;
       &:hover {
         text-decoration: underline;
@@ -247,8 +247,16 @@ header {
       align-items: center;
       justify-content: space-between;
       width: 90%;
-      margin: 1.5rem auto;
+      padding: 1rem;
+      margin: auto;
 
+      .logo a {
+      color: #4caf50;
+      font-size: 24px;
+      font-family: "Inter", sans-serif;
+      font-weight: 500;
+      text-transform: capitalize;
+    }
       .navbar {
         .navList {
           display: flex;
