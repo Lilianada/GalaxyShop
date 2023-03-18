@@ -1,5 +1,5 @@
 <template>
-  <div class="product-details">
+  <div class="product-details" :product="parsedProduct" >
     <h2>{{ parsedProduct.title }}</h2>
     <p>{{ parsedProduct.description }}</p>
     <p class="product-price">$ {{ parsedProduct.price }}</p>
@@ -25,12 +25,12 @@ export default {
     };
   },
   mounted() {
-    this.parsedProduct = JSON.parse(this.product);
+    if (this.product) {
+      this.parsedProduct = JSON.parse(this.product);
+    }
   }
 };
 </script>
-
-
 
   <style scoped>
   .product-details {

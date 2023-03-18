@@ -25,12 +25,15 @@ export default {
   },
   methods: {
     viewProductDetails() {
-      this.$router.push({ name: "product-details", params: { id: this.product.id } });
+      this.$router.push({
+        name: "product-details",
+        params: { id: this.product.id },
+        props: { parsedProduct: this.product },
+      });
     },
   },
 };
 </script>
-
 
 <style scoped>
 .product {
